@@ -1,1 +1,1485 @@
-teste
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07090f">
+  <meta name="description" content="Lucas Jose Campos, desenvolvedor desde 2020 e piloto em formacao. Software, web, automacao e uma perspectiva moldada pela aviacao.">
+  <title>Lucas Jose Campos | Desenvolvedor & Aviacao</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07090f;
+      --panel: #10141f;
+      --panel-2: #151b28;
+      --text: #f6f7fb;
+      --muted: #a8b0c3;
+      --soft: #747f97;
+      --line: rgba(255, 255, 255, .12);
+      --brand: #74d1ff;
+      --accent: #f3c96b;
+      --good: #85e2b7;
+      --danger: #ff7b8c;
+      --shadow: 0 24px 80px rgba(0, 0, 0, .36);
+      --radius: 8px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(116, 209, 255, .12), transparent 34rem),
+        linear-gradient(135deg, rgba(243, 201, 107, .05), transparent 42%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      background: rgba(7, 9, 15, .76);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid rgba(116, 209, 255, .42);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(116, 209, 255, .18), rgba(133, 226, 183, .12));
+      color: var(--brand);
+      font-weight: 900;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .navlinks a {
+      padding: 9px 10px;
+      border-radius: var(--radius);
+    }
+
+    .navlinks a:hover {
+      background: rgba(255, 255, 255, .07);
+      color: var(--text);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 94svh;
+      padding: 128px 0 52px;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, .86fr);
+      gap: clamp(28px, 5vw, 72px);
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 760;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      font-size: clamp(44px, 7.4vw, 92px);
+      line-height: .94;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+    }
+
+    .hero-actions,
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, .06);
+      color: var(--text);
+      font-weight: 780;
+      box-shadow: 0 10px 32px rgba(0, 0, 0, .16);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(116, 209, 255, .55);
+      background: rgba(116, 209, 255, .1);
+    }
+
+    .btn.primary {
+      border-color: rgba(116, 209, 255, .62);
+      background: linear-gradient(135deg, rgba(116, 209, 255, .22), rgba(133, 226, 183, .12));
+    }
+
+    .btn svg,
+    .social svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      stroke-width: 2;
+    }
+
+    .microstack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 30px;
+      max-width: 620px;
+    }
+
+    .chip {
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: rgba(255, 255, 255, .045);
+      color: #dce4f7;
+      font-size: 13px;
+    }
+
+    .scene-wrap {
+      position: relative;
+      min-height: 510px;
+      perspective: 950px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .model-stage {
+      position: relative;
+      width: min(88vw, 620px);
+      height: clamp(340px, 46vw, 560px);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 56% 42%, rgba(116, 209, 255, .2), transparent 18rem),
+        linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .model-stage::before {
+      content: "";
+      position: absolute;
+      inset: 10%;
+      border: 1px solid rgba(116, 209, 255, .16);
+      border-radius: 50%;
+      transform: rotateX(68deg) rotateZ(-12deg);
+      pointer-events: none;
+    }
+
+    .model-stage::after {
+      content: "";
+      position: absolute;
+      inset: auto 13% 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .32), transparent);
+      box-shadow: 0 18px 0 rgba(116, 209, 255, .12), 0 36px 0 rgba(116, 209, 255, .06);
+      pointer-events: none;
+    }
+
+    .sketchfab-embed-wrapper {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .sketchfab-embed-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+    }
+
+    .model-credit {
+      position: absolute;
+      inset: auto 12px 12px;
+      z-index: 3;
+      max-width: calc(100% - 24px);
+      color: rgba(246, 247, 251, .58);
+      font-size: 10px;
+      line-height: 1.35;
+      text-align: right;
+    }
+
+    .model-credit a {
+      color: rgba(116, 209, 255, .86);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .flight-card {
+      position: absolute;
+      inset: auto auto 16px 16px;
+      width: min(280px, 72vw);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(14, 18, 28, .72);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      z-index: 2;
+    }
+
+    .flight-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .flight-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .sky-ring {
+      position: absolute;
+      width: min(82vw, 520px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(116, 209, 255, .18);
+      border-radius: 50%;
+      transform: rotateX(66deg) rotateZ(-18deg);
+    }
+
+    .sky-ring::before,
+    .sky-ring::after {
+      content: "";
+      position: absolute;
+      inset: 13%;
+      border: inherit;
+      border-radius: inherit;
+    }
+
+    .sky-ring::after {
+      inset: 29%;
+      border-color: rgba(243, 201, 107, .16);
+    }
+
+    .runway {
+      position: absolute;
+      bottom: 36px;
+      width: min(74vw, 420px);
+      height: 120px;
+      transform: rotateX(70deg);
+      transform-origin: bottom;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 46px, rgba(255, 255, 255, .26) 46px 54px, transparent 54px 100px),
+        linear-gradient(180deg, rgba(116, 209, 255, .18), transparent 70%);
+      clip-path: polygon(43% 0, 57% 0, 100% 100%, 0 100%);
+      opacity: .62;
+    }
+
+    .airplane {
+      position: relative;
+      width: min(78vw, 520px);
+      height: 260px;
+      transform-style: preserve-3d;
+      transform: rotateX(58deg) rotateY(0deg) rotateZ(-18deg);
+      animation: float 6s ease-in-out infinite;
+      filter: drop-shadow(0 34px 34px rgba(0, 0, 0, .4));
+      z-index: 1;
+    }
+
+    .airplane > span {
+      position: absolute;
+      display: block;
+    }
+
+    .fuselage {
+      left: 15%;
+      top: 42%;
+      width: 70%;
+      height: 38px;
+      border-radius: 999px;
+      background:
+        linear-gradient(90deg, transparent 4%, rgba(116, 209, 255, .32) 9%, transparent 17%),
+        linear-gradient(180deg, #f8fbff, #a8b5c9 48%, #566176);
+      box-shadow: inset 0 9px 12px rgba(255, 255, 255, .58), inset 0 -10px 18px rgba(0, 0, 0, .28);
+    }
+
+    .fuselage::before {
+      content: "";
+      position: absolute;
+      inset: 13px 58px auto 86px;
+      height: 5px;
+      border-radius: 999px;
+      background: repeating-linear-gradient(90deg, rgba(5, 15, 30, .8) 0 8px, transparent 8px 18px);
+      opacity: .72;
+    }
+
+    .nose {
+      right: 9%;
+      top: 42%;
+      width: 86px;
+      height: 38px;
+      border-radius: 0 100% 100% 0;
+      background: linear-gradient(180deg, #ffffff, #7d889c);
+    }
+
+    .tail {
+      left: 10%;
+      top: 36%;
+      width: 92px;
+      height: 66px;
+      border-radius: 999px 8px 8px 999px;
+      background: linear-gradient(180deg, #e9f0fa, #6c788d);
+      clip-path: polygon(0 24%, 100% 38%, 100% 64%, 0 78%);
+    }
+
+    .wing {
+      left: 34%;
+      top: 22%;
+      width: 260px;
+      height: 120px;
+      border-radius: 14px 100% 18px 100%;
+      background: linear-gradient(135deg, #f9fbff, #8592a8 54%, #313949);
+      clip-path: polygon(4% 45%, 100% 0, 78% 100%, 0 66%);
+      transform: translateZ(18px);
+      opacity: .97;
+    }
+
+    .wing.back {
+      top: 42%;
+      transform: translateZ(-18px) scaleY(-.92);
+      filter: brightness(.72);
+      z-index: -1;
+    }
+
+    .tailfin {
+      left: 15%;
+      top: 8%;
+      width: 88px;
+      height: 98px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--brand), #244b73 70%);
+      clip-path: polygon(16% 100%, 62% 0, 100% 100%);
+      transform: translateZ(24px) rotateZ(-2deg);
+    }
+
+    .stabilizer {
+      left: 12%;
+      top: 32%;
+      width: 120px;
+      height: 46px;
+      background: linear-gradient(135deg, #f5f8ff, #738197);
+      clip-path: polygon(0 45%, 100% 6%, 78% 90%, 0 65%);
+    }
+
+    .engine {
+      width: 42px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 70% 50%, #121720 0 26%, #5a6475 28%, #d8e0ec 58%, #6c788c 100%);
+      box-shadow: inset -6px 0 10px rgba(0, 0, 0, .34);
+    }
+
+    .engine.e1 {
+      left: 43%;
+      top: 54%;
+    }
+
+    .engine.e2 {
+      left: 55%;
+      top: 50%;
+    }
+
+    .engine.e3 {
+      left: 43%;
+      top: 35%;
+      filter: brightness(.74);
+      z-index: -1;
+    }
+
+    .engine.e4 {
+      left: 55%;
+      top: 31%;
+      filter: brightness(.74);
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: rotateX(58deg) rotateY(0deg) rotateZ(-18deg) translate3d(0, 0, 0);
+      }
+
+      50% {
+        transform: rotateX(58deg) rotateY(3deg) rotateZ(-15deg) translate3d(0, -14px, 10px);
+      }
+    }
+
+    section {
+      padding: 86px 0;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(240px, .4fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    h2 {
+      max-width: 720px;
+      font-size: clamp(30px, 4.8vw, 58px);
+      line-height: 1;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .section-head p,
+    .wide-copy {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .story {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), transparent);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(280px, .55fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .statement {
+      border-left: 2px solid var(--brand);
+      padding-left: clamp(18px, 3vw, 34px);
+      color: #e5eaf5;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.18;
+      text-wrap: balance;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric,
+    .work-card,
+    .aviation-note {
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .065), rgba(255, 255, 255, .032));
+      box-shadow: 0 14px 42px rgba(0, 0, 0, .18);
+    }
+
+    .metric {
+      min-height: 126px;
+      padding: 18px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .work-card {
+      min-height: 254px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .work-card h3 {
+      font-size: 21px;
+      line-height: 1.12;
+    }
+
+    .work-card p {
+      margin-top: 14px;
+      color: var(--muted);
+    }
+
+    .card-kicker {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 26px;
+      border: 1px solid rgba(116, 209, 255, .22);
+      border-radius: 999px;
+      padding: 6px 9px;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 6px 9px;
+      background: rgba(255, 255, 255, .07);
+      color: #cdd5e6;
+      font-size: 12px;
+    }
+
+    .aviation {
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(116, 209, 255, .05), rgba(255, 255, 255, .01)),
+        #090c13;
+    }
+
+    .aviation-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .72fr) minmax(320px, .62fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .photo-strip {
+      display: grid;
+      grid-template-columns: .82fr 1fr;
+      gap: 12px;
+      min-height: 410px;
+    }
+
+    .photo-tile {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .photo-tile::before,
+    .photo-tile::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .photo-tile.cockpit {
+      background:
+        radial-gradient(circle at 38% 30%, rgba(116, 209, 255, .18), transparent 15rem),
+        linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .015)),
+        #0b1019;
+    }
+
+    .photo-tile.cockpit::before {
+      inset: 0;
+      background:
+        linear-gradient(18deg, transparent 0 41%, rgba(255, 255, 255, .1) 42% 43%, transparent 44%),
+        linear-gradient(155deg, rgba(116, 209, 255, .13), transparent 34%),
+        linear-gradient(180deg, transparent 0 46%, rgba(4, 7, 12, .82) 47% 100%);
+    }
+
+    .photo-tile.cockpit::after {
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      bottom: 17%;
+      height: 36%;
+      border: 1px solid rgba(255, 255, 255, .11);
+      border-radius: 8px 8px 24px 24px;
+      background:
+        radial-gradient(circle at 23% 38%, transparent 0 24px, rgba(116, 209, 255, .55) 25px 27px, transparent 28px),
+        radial-gradient(circle at 51% 36%, transparent 0 28px, rgba(243, 201, 107, .58) 29px 31px, transparent 32px),
+        radial-gradient(circle at 77% 40%, transparent 0 22px, rgba(133, 226, 183, .54) 23px 25px, transparent 26px),
+        linear-gradient(90deg, rgba(255, 255, 255, .13) 0 1px, transparent 1px 16px),
+        linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .035));
+      box-shadow: inset 0 18px 30px rgba(255, 255, 255, .04), 0 -22px 44px rgba(0, 0, 0, .24);
+    }
+
+    .cockpit-horizon {
+      position: absolute;
+      top: 16%;
+      left: 14%;
+      right: 14%;
+      height: 24%;
+      border: 1px solid rgba(116, 209, 255, .22);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(116, 209, 255, .25) 0 48%, rgba(243, 201, 107, .2) 49% 100%),
+        #111827;
+      box-shadow: inset 0 0 28px rgba(0, 0, 0, .26);
+    }
+
+    .cockpit-horizon::before,
+    .cockpit-horizon::after {
+      content: "";
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      top: 50%;
+      height: 1px;
+      background: rgba(255, 255, 255, .58);
+    }
+
+    .cockpit-horizon::after {
+      left: 47%;
+      right: auto;
+      top: 24%;
+      width: 1px;
+      height: 52%;
+    }
+
+    .cockpit-switches {
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: 9%;
+      height: 7px;
+      border-radius: 999px;
+      background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .62) 0 8px, transparent 8px 22px);
+      opacity: .72;
+    }
+
+    .photo-tile.runway {
+      background:
+        radial-gradient(circle at 50% 22%, rgba(243, 201, 107, .22), transparent 16rem),
+        linear-gradient(180deg, #111827 0 34%, #0c111b 35% 100%);
+    }
+
+    .photo-tile.runway::before {
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 0 41%, rgba(0, 0, 0, .4) 42% 100%),
+        linear-gradient(110deg, transparent 0 45%, rgba(116, 209, 255, .22) 46% 47%, transparent 48%);
+    }
+
+    .photo-tile.runway::after {
+      left: 17%;
+      right: 17%;
+      bottom: 0;
+      height: 68%;
+      clip-path: polygon(47% 0, 53% 0, 100% 100%, 0 100%);
+      background:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, .62) 0 24px, transparent 24px 58px),
+        linear-gradient(90deg, rgba(116, 209, 255, .24), transparent 18%, transparent 82%, rgba(116, 209, 255, .24)),
+        linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02));
+      opacity: .82;
+    }
+
+
+    .photo-tile > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+
+    .scene-wrap > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+
+    .photo-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .image-card {
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      display: block;
+    }
+
+    .image-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      vertical-align: middle;
+    }
+
+    .runway-lights {
+      position: absolute;
+      inset: 42% 9% 12%;
+      background:
+        radial-gradient(circle at 11% 95%, rgba(116, 209, 255, .95) 0 3px, transparent 4px),
+        radial-gradient(circle at 89% 95%, rgba(116, 209, 255, .95) 0 3px, transparent 4px),
+        radial-gradient(circle at 23% 70%, rgba(116, 209, 255, .68) 0 2px, transparent 3px),
+        radial-gradient(circle at 77% 70%, rgba(116, 209, 255, .68) 0 2px, transparent 3px),
+        radial-gradient(circle at 35% 47%, rgba(243, 201, 107, .7) 0 2px, transparent 3px),
+        radial-gradient(circle at 65% 47%, rgba(243, 201, 107, .7) 0 2px, transparent 3px),
+        radial-gradient(circle at 47% 25%, rgba(255, 255, 255, .52) 0 1px, transparent 2px),
+        radial-gradient(circle at 53% 25%, rgba(255, 255, 255, .52) 0 1px, transparent 2px);
+      filter: drop-shadow(0 0 10px rgba(116, 209, 255, .45));
+    }
+
+    .strip-label {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: rgba(246, 247, 251, .86);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .strip-label span:last-child {
+      color: rgba(168, 176, 195, .82);
+      font-weight: 700;
+    }
+
+    .photo-tile.small {
+      margin-top: 58px;
+      min-height: 310px;
+    }
+
+    .photo-tile.large {
+      min-height: 410px;
+    }
+
+    .aviation-note {
+      padding: clamp(22px, 3.4vw, 34px);
+    }
+
+    .aviation-note p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 14px;
+      color: var(--muted);
+    }
+
+    .timeline-item strong {
+      color: var(--good);
+    }
+
+    .contact {
+      padding-bottom: 58px;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .52fr);
+      gap: 30px;
+      align-items: end;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: var(--radius);
+      padding: clamp(24px, 5vw, 46px);
+      background:
+        linear-gradient(135deg, rgba(116, 209, 255, .13), transparent 38%),
+        linear-gradient(315deg, rgba(243, 201, 107, .11), transparent 44%),
+        rgba(255, 255, 255, .04);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box p {
+      max-width: 690px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .socials {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .social {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 46px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: var(--radius);
+      padding: 11px 12px;
+      background: rgba(255, 255, 255, .055);
+      color: #dce3f1;
+      font-weight: 760;
+    }
+
+    .social:hover {
+      border-color: rgba(116, 209, 255, .52);
+      background: rgba(116, 209, 255, .1);
+    }
+
+    footer {
+      padding: 24px 0 36px;
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      padding-top: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .navlinks {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 112px;
+      }
+
+      .hero-grid,
+      .story-grid,
+      .section-head,
+      .aviation-layout,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .scene-wrap {
+        min-height: 420px;
+        order: -1;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .hero {
+        padding-bottom: 34px;
+      }
+
+      .scene-wrap {
+        min-height: 350px;
+      }
+
+      .model-stage {
+        width: 100%;
+        height: 340px;
+      }
+
+      .airplane {
+        width: 400px;
+        height: 210px;
+      }
+
+      .flight-card {
+        inset: auto 0 0;
+        width: 100%;
+      }
+
+      .metrics,
+      .photo-strip,
+      .socials {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-strip {
+        min-height: auto;
+      }
+
+      .photo-tile.small,
+      .photo-tile.large {
+        min-height: 230px;
+        margin: 0;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .footer-row {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <nav class="shell nav" aria-label="Navegacao principal">
+        <a class="brand" href="#top" aria-label="Inicio">
+          <span class="mark">C</span>
+          <span>Lucas Jose Campos</span>
+        </a>
+        <div class="navlinks">
+          <a href="#sobre">Sobre</a>
+          <a href="#trabalho">Trabalho</a>
+          <a href="#aviacao">Aviacao</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div>
+            <p class="eyebrow">Desenvolvedor desde 2020</p>
+            <h1>Codigo com cockpit, produto com altitude.</h1>
+            <p class="lead">
+              Sou Lucas, desenvolvedor e piloto em formacao. Construo experiencias web,
+              automacoes e interfaces com a mesma disciplina que aprendi na aviacao:
+              leitura de contexto, precisao e decisao limpa.
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#trabalho" aria-label="Ver trabalho">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                Ver trabalho
+              </a>
+              <a class="btn" href="mailto:lucasjosecampos2@gmail.com" aria-label="Enviar email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m4 6 8 7 8-7"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+                Entrar em contato
+              </a>
+            </div>
+            <div class="microstack" aria-label="Tecnologias principais">
+              <span class="chip">JavaScript</span>
+              <span class="chip">TypeScript</span>
+              <span class="chip">PHP</span>
+              <span class="chip">HTML/CSS</span>
+              <span class="chip">Node.js</span>
+              <span class="chip">MySQL</span>
+              <span class="chip">Git</span>
+            </div>
+          </div>
+
+          <div class="scene-wrap" aria-label="Modelo 3D do aviao A380">
+
+              <canvas class="model-canvas" aria-hidden="true"></canvas>
+              <img src="A380.png" alt="A380 hero" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="story" id="sobre">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Perfil</p>
+              <h2>Uma trajetoria tecnica com cabeca de quem aprende olhando o painel inteiro.</h2>
+            </div>
+            <p>
+              Desde 2020, venho trabalhando com desenvolvimento e criando repertorio em web,
+              sistemas, comunidades e operacao. A aviacao entra como diferencial: foco,
+              checklist mental e respeito por detalhe.
+            </p>
+          </div>
+
+          <div class="story-grid">
+            <p class="statement">
+              Eu gosto de construir coisas que parecem simples para quem usa, mesmo quando por baixo
+              existe regra, integracao, performance e muita decisao de produto.
+            </p>
+            <div class="metrics">
+              <div class="metric">
+                <strong>2020</strong>
+                <span>inicio da jornada em desenvolvimento</span>
+              </div>
+              <div class="metric">
+                <strong>MC-01</strong>
+                <span>aeronave atual nos voos</span>
+              </div>
+              <div class="metric">
+                <strong>C152</strong>
+                <span>base da instrucao e fundamentos</span>
+              </div>
+              <div class="metric">
+                <strong>A380</strong>
+                <span>referencia visual favorita</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="trabalho">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">O que faco</p>
+              <h2>Interfaces, sistemas e automacoes para tirar ideias do papel com criterio.</h2>
+            </div>
+            <p>
+              Uma presenca direta, com o essencial bem apresentado para contratantes e
+              colaboradores entenderem rapido como posso ajudar.
+            </p>
+          </div>
+
+          <div class="work-grid">
+            <article class="work-card">
+              <div>
+                <span class="card-kicker">Frontend</span>
+                <h3>Landing pages e interfaces responsivas</h3>
+                <p>Experiencias leves, visualmente fortes e adaptadas para desktop e mobile.</p>
+              </div>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JS</span>
+              </div>
+            </article>
+
+            <article class="work-card">
+              <div>
+                <span class="card-kicker">Sistemas</span>
+                <h3>Fluxos web com logica clara</h3>
+                <p>Organizacao de dados, telas operacionais e pequenas aplicacoes para rotina real.</p>
+              </div>
+              <div class="tags">
+                <span class="tag">PHP</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">APIs</span>
+              </div>
+            </article>
+
+            <article class="work-card">
+              <div>
+                <span class="card-kicker">Comunidade</span>
+                <h3>Automacoes e servidores</h3>
+                <p>Ferramentas simples para comunidades, atendimento, organizacao e operacao.</p>
+              </div>
+              <div class="tags">
+                <span class="tag">Node.js</span>
+                <span class="tag">Discord</span>
+                <span class="tag">Git</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="aviation" id="aviacao">
+        <div class="shell aviation-layout">
+          <div>
+            <p class="eyebrow">Aviacao</p>
+            <h2>O voo como linguagem, nao como curriculo pendurado na parede.</h2>
+            <p class="wide-copy">
+              A aviacao aparece como parte da minha forma de pensar: luz de pista, geometria,
+              altitude e referencias que conectam disciplina tecnica com personalidade.
+            </p>
+            <div class="timeline">
+              <div class="timeline-item">
+                <strong>C152</strong>
+                <span>onde a instrucao consolidou fundamentos, comunicacao e disciplina.</span>
+              </div>
+              <div class="timeline-item">
+                <strong>MC-01</strong>
+                <span>a referencia atual de pilotagem, colocada de forma natural na narrativa.</span>
+              </div>
+              <div class="timeline-item">
+                <strong>A380</strong>
+                <span>a inspiracao visual para escala, presenca e uma estetica mais ousada.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="photo-strip" aria-label="Composicoes visuais inspiradas em aviacao">
+            <div class="photo-cards">
+              <article class="image-card">
+                <img src="Cockpit.png" alt="Detalhes do cockpit">
+              </article>
+              <article class="image-card">
+                <img src="RWY.png" alt="Luzes de pista">
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contato">
+        <div class="shell">
+          <div class="contact-box">
+            <div>
+              <p class="eyebrow">Contato</p>
+              <h2>Quer conversar sobre projeto, vaga ou servidor?</h2>
+              <p>
+                O caminho e simples: me chame por email, GitHub, LinkedIn ou Discord.
+                Prefiro uma conversa direta, do jeito mais rapido para cada oportunidade.
+              </p>
+              <div class="contact-actions">
+                <a class="btn primary" href="#contato" aria-label="Entrar no servidor Discord">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 8h10l1 9-4-2-2 2-2-2-4 2 1-9Z"/><path d="M9 12h.01"/><path d="M15 12h.01"/></svg>
+                  Entrar no sv
+                </a>
+                <a class="btn" href="mailto:lucasjosecampos2@gmail.com" aria-label="Enviar email para Lucas">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m4 6 8 7 8-7"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+                  Email
+                </a>
+              </div>
+            </div>
+
+            <div class="socials" aria-label="Links sociais">
+              <a class="social" href="https://github.com/crocodiles128" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 19c-4 1.5-4-2-6-2m12 5v-3.5c0-1 .1-1.4-.5-2 2-.2 4.5-1 4.5-5A4 4 0 0 0 18 8.7c.1-.3.5-1.6-.1-3.2 0 0-1.2-.4-3.4 1.3a12 12 0 0 0-6.1 0C6.2 5.1 5 5.5 5 5.5c-.6 1.6-.2 2.9-.1 3.2A4 4 0 0 0 4 11.5c0 4 2.5 4.8 4.5 5-.6.5-.6 1.2-.5 2V22"/></svg>
+                GitHub
+              </a>
+              <a class="social" href="#contato">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 19c-4 1.5-4-2-6-2m12 5v-3.5c0-1 .1-1.4-.5-2 2-.2 4.5-1 4.5-5A4 4 0 0 0 18 8.7c.1-.3.5-1.6-.1-3.2 0 0-1.2-.4-3.4 1.3a12 12 0 0 0-6.1 0C6.2 5.1 5 5.5 5 5.5c-.6 1.6-.2 2.9-.1 3.2A4 4 0 0 0 4 11.5c0 4 2.5 4.8 4.5 5-.6.5-.6 1.2-.5 2V22"/></svg>
+                GitHub 2
+              </a>
+              <a class="social" href="#contato">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <a class="social" href="#contato">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M7 8h10l1 9-4-2-2 2-2-2-4 2 1-9Z"/><path d="M9 12h.01"/><path d="M15 12h.01"/></svg>
+                Discord
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell footer-row">
+        <span>Lucas Jose Campos, 2026.</span>
+        <span>Dark mode por padrao. Single page estatica.</span>
+      </div>
+    </footer>
+  </div>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"
+      }
+    }
+  </script>
+  <script type="module">
+    import * as THREE from "three";
+    import { MTLLoader } from "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/loaders/MTLLoader.js";
+    import { OBJLoader } from "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/loaders/OBJLoader.js";
+
+    const stage = document.querySelector(".model-stage");
+    const canvas = document.querySelector(".model-canvas");
+    const fallback = document.querySelector(".model-fallback");
+
+    if (stage && canvas) {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true,
+        powerPreference: "high-performance"
+      });
+      const modelRoot = new THREE.Group();
+      const clock = new THREE.Clock();
+
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      scene.add(modelRoot);
+
+      scene.add(new THREE.HemisphereLight(0xb8e8ff, 0x10131c, 2.2));
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 2.6);
+      keyLight.position.set(4, 5, 7);
+      scene.add(keyLight);
+
+      const rimLight = new THREE.DirectionalLight(0x74d1ff, 1.8);
+      rimLight.position.set(-5, 2, -4);
+      scene.add(rimLight);
+
+      camera.position.set(0, 1.35, 7.2);
+
+      const resize = () => {
+        const { width, height } = stage.getBoundingClientRect();
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.lookAt(0, 0, 0);
+        camera.updateProjectionMatrix();
+      };
+
+      const frameModel = (object) => {
+        const box = new THREE.Box3().setFromObject(object);
+        const size = new THREE.Vector3();
+        const center = new THREE.Vector3();
+
+        box.getSize(size);
+        box.getCenter(center);
+        object.position.sub(center);
+
+        const largestSide = Math.max(size.x, size.y, size.z);
+        const scale = largestSide > 0 ? 6.2 / largestSide : 1;
+        object.scale.setScalar(scale);
+        object.rotation.set(0, 0, -0.1);
+
+        const framedBox = new THREE.Box3().setFromObject(object);
+        const sphere = new THREE.Sphere();
+        framedBox.getBoundingSphere(sphere);
+
+        camera.position.set(0, sphere.radius * 0.18, sphere.radius * 4.8);
+        camera.near = Math.max(0.01, sphere.radius / 100);
+        camera.far = Math.max(1000, sphere.radius * 120);
+        camera.lookAt(0, 0, 0);
+        camera.updateProjectionMatrix();
+      };
+
+      const modelPackage = {
+        folder: (stage.dataset.modelFolder || "a380-with-a380plus-winglet/source/qwde").replace(/^\/+|\/+$/g, ""),
+        obj: stage.dataset.modelObj || "A380 With Plus Winglet.obj",
+        mtl: stage.dataset.modelMtl || "A380 With Plus Winglet.mtl"
+      };
+
+      const fallbackMaterial = new THREE.MeshStandardMaterial({
+        color: 0xdfe8f4,
+        emissive: 0x18283a,
+        emissiveIntensity: 0.28,
+        roughness: 0.42,
+        metalness: 0.18,
+        side: THREE.DoubleSide
+      });
+
+      const splitAssetPath = (folder, file) => {
+        const slash = file.lastIndexOf("/");
+        const subdir = slash >= 0 ? `${file.slice(0, slash + 1)}` : "";
+
+        return {
+          path: `${folder}/${subdir}`,
+          name: slash >= 0 ? file.slice(slash + 1) : file
+        };
+      };
+
+      const loadMaterials = ({ folder, mtl }) => new Promise((resolve) => {
+        const { path, name } = splitAssetPath(folder, mtl);
+        const materialLoader = new MTLLoader();
+
+        materialLoader.setPath(path);
+        materialLoader.setResourcePath(path);
+        materialLoader.load(
+          name,
+          (materials) => {
+            materials.preload();
+            resolve(materials);
+          },
+          undefined,
+          () => resolve(null)
+        );
+      });
+
+      const loadObject = ({ folder, obj }, materials) => new Promise((resolve, reject) => {
+        const { path, name } = splitAssetPath(folder, obj);
+        const objectLoader = new OBJLoader();
+
+        objectLoader.setPath(path);
+        if (materials) {
+          objectLoader.setMaterials(materials);
+        }
+
+        objectLoader.load(name, resolve, undefined, reject);
+      });
+
+      const prepareModelMaterials = (object) => {
+        object.traverse((part) => {
+          if (part.isMesh) {
+            part.frustumCulled = false;
+            part.material = fallbackMaterial.clone();
+          }
+        });
+      };
+
+      const showModel = (object) => {
+        prepareModelMaterials(object);
+        frameModel(object);
+        modelRoot.add(object);
+
+        const outline = new THREE.BoxHelper(object, 0x74d1ff);
+        outline.material.transparent = true;
+        outline.material.opacity = 0.36;
+        modelRoot.add(outline);
+
+        stage.classList.add("is-loaded");
+        if (fallback) {
+          fallback.hidden = true;
+        }
+      };
+
+      const loadModelPackage = async () => {
+        try {
+          const materials = await loadMaterials(modelPackage);
+          const object = await loadObject(modelPackage, materials);
+          showModel(object);
+        } catch (error) {
+          console.warn("A380 model failed to load.", error);
+        }
+
+        if (!stage.classList.contains("is-loaded") && fallback) {
+          fallback.textContent = "Modelo 3D temporariamente indisponivel.";
+        }
+      };
+
+      loadModelPackage();
+
+      const animate = () => {
+        const t = clock.getElapsedTime();
+        modelRoot.rotation.y = Math.sin(t * 0.32) * 0.12;
+        modelRoot.rotation.x = Math.sin(t * 0.22) * 0.035;
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      };
+
+      window.addEventListener("resize", resize, { passive: true });
+      resize();
+      animate();
+    }
+  </script>
+</body>
+</html>
