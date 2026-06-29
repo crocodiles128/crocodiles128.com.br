@@ -1,0 +1,1936 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e0e10">
+  <meta name="description" content="Crocodiles Store — Engenharia especializada em servidores Discord. Bots, arquitetura, moderação, automação e consultoria.">
+  <meta name="color-scheme" content="dark">
+  <title>Crocodiles Store — Engenharia Discord</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       CROCODILES STORE — Design System
+       Inspired by Discord's design philosophy.
+       Handcrafted. Not templated.
+       ============================================================ */
+
+    :root {
+      color-scheme: dark;
+      --bg: #0e0e10;
+      --surface-0: #131315;
+      --surface-1: #18181b;
+      --surface-2: #1f1f23;
+      --surface-3: #27272a;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-strong: rgba(255, 255, 255, 0.10);
+      --border-hover: rgba(255, 255, 255, 0.16);
+      --text: #f2f3f5;
+      --text-secondary: #a1a3ab;
+      --text-muted: #6b6d76;
+      --text-link: #00a8fc;
+      --green: #2b8252;
+      --green-bright: #3ba55c;
+      --green-bg: rgba(43, 130, 82, 0.10);
+      --green-border: rgba(43, 130, 82, 0.25);
+      --green-glow: rgba(43, 130, 82, 0.08);
+      --danger: #da373c;
+      --danger-bg: rgba(218, 55, 60, 0.10);
+      --warning: #c9781a;
+      --radius-sm: 4px;
+      --radius: 8px;
+      --radius-lg: 12px;
+      --font: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --nav-height: 56px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-width: 320px;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--green-bg);
+      color: var(--text);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    img,
+    svg {
+      display: block;
+    }
+
+    /* ============================================================
+       UTILITY
+       ============================================================ */
+
+    .shell {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .shell-narrow {
+      width: min(960px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ============================================================
+       NAVIGATION — Discord channel-header inspired
+       ============================================================ */
+
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      height: var(--nav-height);
+      border-bottom: 1px solid var(--border);
+      background: rgba(14, 14, 16, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-height);
+      gap: 12px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      flex-shrink: 0;
+    }
+
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-icon svg {
+      width: 16px;
+      height: 16px;
+      color: var(--green-bright);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-text span:first-child {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .brand-text span:last-child {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .nav-links a {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      color: var(--green-bright);
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+    }
+
+    .nav-cta:hover {
+      background: rgba(43, 130, 82, 0.18);
+      border-color: rgba(43, 130, 82, 0.4);
+    }
+
+    .nav-cta svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ============================================================
+       HERO — Diagnostic panel + typography
+       ============================================================ */
+
+    .hero {
+      padding: calc(var(--nav-height) + 48px) 0 64px;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+      color: var(--text);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green-bright);
+    }
+
+    .hero-lead {
+      margin-top: 16px;
+      font-size: clamp(15px, 1.4vw, 17px);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 520px;
+      text-wrap: balance;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      border: 1px solid var(--border-strong);
+      background: var(--surface-1);
+      color: var(--text);
+      min-height: 40px;
+    }
+
+    .btn:hover {
+      border-color: var(--border-hover);
+      background: var(--surface-2);
+    }
+
+    .btn-primary {
+      background: var(--green-bg);
+      border-color: var(--green-border);
+      color: var(--green-bright);
+    }
+
+    .btn-primary:hover {
+      background: rgba(43, 130, 82, 0.18);
+      border-color: rgba(43, 130, 82, 0.4);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* Diagnostic Panel — Discord server status inspired */
+    .diagnostic-panel {
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      background: var(--surface-0);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-1);
+    }
+
+    .panel-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .panel-header-left svg {
+      width: 14px;
+      height: 14px;
+      color: var(--green-bright);
+    }
+
+    .panel-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green-bright);
+    }
+
+    .panel-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green-bright);
+      box-shadow: 0 0 6px var(--green-glow);
+    }
+
+    .panel-body {
+      padding: 16px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .panel-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-1);
+      font-size: 13px;
+    }
+
+    .panel-row-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+    }
+
+    .panel-row-label svg {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .panel-row-value {
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .panel-row-value.green {
+      color: var(--green-bright);
+    }
+
+    .panel-row-value.warning {
+      color: var(--warning);
+    }
+
+    .panel-footer {
+      padding: 10px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .panel-footer svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       SECTION COMMON
+       ============================================================ */
+
+    section {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--text-muted);
+    }
+
+    .section-title {
+      font-size: clamp(26px, 3.6vw, 44px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      color: var(--text);
+    }
+
+    .section-desc {
+      margin-top: 12px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    /* ============================================================
+       SERVICES — Channel list layout
+       ============================================================ */
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 0;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface-0);
+      margin-top: 32px;
+    }
+
+    .channel-sidebar {
+      background: var(--surface-1);
+      border-right: 1px solid var(--border);
+      padding: 12px 0;
+    }
+
+    .channel-category {
+      padding: 8px 12px 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .channel-category svg {
+      width: 10px;
+      height: 10px;
+      color: var(--text-muted);
+    }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px 6px 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+      border-radius: 0;
+      position: relative;
+    }
+
+    .channel-item::before {
+      content: '#';
+      font-weight: 500;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .channel-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+    }
+
+    .channel-item.active {
+      background: rgba(43, 130, 82, 0.12);
+      color: var(--green-bright);
+    }
+
+    .channel-item.active::before {
+      color: var(--green-bright);
+    }
+
+    .channel-item.active::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 2px;
+      bottom: 2px;
+      width: 2px;
+      background: var(--green-bright);
+      border-radius: 0 1px 1px 0;
+    }
+
+    .channel-content {
+      padding: 24px;
+    }
+
+    .channel-content-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .channel-content-header .hash {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .channel-content-header h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .channel-content-body {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .channel-content-body p + p {
+      margin-top: 12px;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .service-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .service-tag.green {
+      background: var(--green-bg);
+      border-color: var(--green-border);
+      color: var(--green-bright);
+    }
+
+    /* ============================================================
+       PROCESS — Audit log / timeline
+       ============================================================ */
+
+    .process-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .process-timeline {
+      display: grid;
+      gap: 2px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface-0);
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0;
+      background: var(--surface-1);
+      transition: background 0.15s;
+    }
+
+    .process-step:hover {
+      background: var(--surface-2);
+    }
+
+    .process-step + .process-step {
+      border-top: 1px solid var(--border);
+    }
+
+    .process-step-time {
+      padding: 14px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-0);
+    }
+
+    .process-step-time .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .process-step-time .dot.green {
+      background: var(--green-bright);
+      box-shadow: 0 0 6px var(--green-glow);
+    }
+
+    .process-step-body {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .process-step-body h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .process-step-body p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .process-step-badge {
+      flex-shrink: 0;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .process-step-badge.green {
+      background: var(--green-bg);
+      border-color: var(--green-border);
+      color: var(--green-bright);
+    }
+
+    /* ============================================================
+       EXPERTISE — Role / permission matrix
+       ============================================================ */
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--border-strong);
+      margin-top: 32px;
+    }
+
+    .expertise-card {
+      background: var(--surface-0);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .expertise-card:hover {
+      background: var(--surface-1);
+    }
+
+    .expertise-role {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    .expertise-role.dev {
+      background: rgba(0, 168, 252, 0.12);
+      color: var(--text-link);
+      border: 1px solid rgba(0, 168, 252, 0.2);
+    }
+
+    .expertise-role.infra {
+      background: rgba(59, 165, 92, 0.12);
+      color: var(--green-bright);
+      border: 1px solid rgba(59, 165, 92, 0.2);
+    }
+
+    .expertise-role.community {
+      background: rgba(250, 168, 26, 0.12);
+      color: var(--warning);
+      border: 1px solid rgba(250, 168, 26, 0.2);
+    }
+
+    .expertise-role.security {
+      background: rgba(218, 55, 60, 0.12);
+      color: var(--danger);
+      border: 1px solid rgba(218, 55, 60, 0.2);
+    }
+
+    .expertise-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .expertise-card p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .expertise-perms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: auto;
+    }
+
+    .expertise-perm {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--surface-2);
+    }
+
+    .expertise-perm svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    .expertise-perm.allowed svg {
+      color: var(--green-bright);
+    }
+
+    /* ============================================================
+       CONTACT — Ticket interface
+       ============================================================ */
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .ticket-panel {
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      background: var(--surface-0);
+      overflow: hidden;
+    }
+
+    .ticket-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-1);
+    }
+
+    .ticket-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ticket-header-left svg {
+      width: 18px;
+      height: 18px;
+      color: var(--green-bright);
+    }
+
+    .ticket-header-left h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .ticket-badge {
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: var(--green-bg);
+      color: var(--green-bright);
+      border: 1px solid var(--green-border);
+    }
+
+    .ticket-body {
+      padding: 18px;
+    }
+
+    .ticket-body p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .ticket-body p + p {
+      margin-top: 12px;
+    }
+
+    .ticket-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .ticket-info {
+      display: grid;
+      gap: 8px;
+    }
+
+    .ticket-info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .ticket-info-item:hover {
+      border-color: var(--border-hover);
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .ticket-info-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .ticket-info-item .green {
+      color: var(--green-bright);
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0 32px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-inner a {
+      color: var(--text-secondary);
+      transition: color 0.15s;
+    }
+
+    .footer-inner a:hover {
+      color: var(--text);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+       ============================================================ */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+
+    @media (max-width: 1024px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .diagnostic-panel {
+        max-width: 480px;
+      }
+
+      .services-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .channel-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        padding: 8px;
+      }
+
+      .channel-category {
+        width: 100%;
+        padding: 4px 8px;
+      }
+
+      .channel-item {
+        padding: 4px 10px;
+        border-radius: var(--radius-sm);
+      }
+
+      .channel-item.active::after {
+        display: none;
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: calc(var(--nav-height) + 32px);
+        min-height: auto;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+
+      .process-step {
+        grid-template-columns: 1fr;
+      }
+
+      .process-step-time {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 10px 14px;
+      }
+
+      .process-step-body {
+        padding: 10px 14px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .expertise-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .shell,
+      .shell-narrow {
+        width: calc(100% - 20px);
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .channel-content {
+        padding: 16px;
+      }
+
+      .ticket-body {
+        padding: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="topbar" role="banner">
+    <nav class="shell nav" aria-label="Navegação principal">
+      <a class="brand" href="#top" aria-label="Crocodiles Store — Início">
+        <span class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2 6.5 4 8.5s2.5 3.5 4 5.5c1.5-2 2-3.5 4-5.5s4-5 4-8.5a8 8 0 0 0-8-8z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span>Crocodiles Store</span>
+          <span>Engenharia Discord</span>
+        </span>
+      </a>
+
+      <div class="nav-links" role="list">
+        <a href="#servicos" role="listitem">Serviços</a>
+        <a href="#processo" role="listitem">Processo</a>
+        <a href="#expertise" role="listitem">Expertise</a>
+        <a href="#contato" role="listitem">Contato</a>
+      </div>
+
+      <a class="nav-cta" href="#contato" aria-label="Abrir ticket no Discord">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 8h10l1 9-4-2-2 2-2-2-4 2 1-9Z"/>
+          <path d="M9 12h.01"/>
+          <path d="M15 12h.01"/>
+        </svg>
+        Abrir Ticket
+      </a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero" aria-label="Apresentação">
+      <div class="shell hero-layout">
+        <div>
+          <h1>
+            Engenharia de servidores<br>
+            <em>Discord</em>
+          </h1>
+          <p class="hero-lead">
+            Nós construímos, estruturamos e mantemos servidores Discord profissionais.
+            Da arquitetura à moderação — tudo que um servidor de alto nível precisa.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contato">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 8h10l1 9-4-2-2 2-2-2-4 2 1-9Z"/>
+                <path d="M9 12h.01"/>
+                <path d="M15 12h.01"/>
+              </svg>
+              Abrir Ticket
+            </a>
+            <a class="btn" href="#servicos">
+              Ver Serviços
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/>
+                <path d="m13 6 6 6-6 6"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Diagnostic Panel -->
+        <div class="diagnostic-panel" aria-label="Painel de diagnóstico do servidor">
+          <div class="panel-header">
+            <div class="panel-header-left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8"/>
+                <path d="M12 17v4"/>
+              </svg>
+              Diagnóstico
+            </div>
+            <div class="panel-status">
+              <span class="panel-status-dot" aria-hidden="true"></span>
+              Online
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="panel-row">
+              <span class="panel-row-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 7h-4.5a2.5 2.5 0 0 1 0-5H20"/>
+                  <path d="M4 7h4.5a2.5 2.5 0 0 0 0-5H4"/>
+                  <path d="M20 17h-4.5a2.5 2.5 0 0 1 0-5H20"/>
+                  <path d="M4 17h4.5a2.5 2.5 0 0 0 0-5H4"/>
+                  <path d="M20 12H4"/>
+                </svg>
+                Arquitetura
+              </span>
+              <span class="panel-row-value green">Otimizada</span>
+            </div>
+            <div class="panel-row">
+              <span class="panel-row-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                Moderação
+              </span>
+              <span class="panel-row-value green">Ativa 24/7</span>
+            </div>
+            <div class="panel-row">
+              <span class="panel-row-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                Segurança
+              </span>
+              <span class="panel-row-value green">Protegido</span>
+            </div>
+            <div class="panel-row">
+              <span class="panel-row-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"/>
+                  <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                Automação
+              </span>
+              <span class="panel-row-value green">Configurada</span>
+            </div>
+            <div class="panel-row">
+              <span class="panel-row-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                Comunidade
+              </span>
+              <span class="panel-row-value warning">Em crescimento</span>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+            Última verificação: há 2 minutos
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICES — Channel list layout
+         ============================================================ -->
+    <section id="servicos" aria-label="Serviços">
+      <div class="shell">
+        <div class="section-label">Serviços</div>
+        <h2 class="section-title">Tudo que seu servidor precisa, organizado como canais.</h2>
+        <p class="section-desc">
+          Cada serviço é uma peça de um ecossistema. Navegue pelas categorias e entenda como podemos estruturar seu Discord.
+        </p>
+
+        <div class="services-layout" role="tablist" aria-label="Categorias de serviços">
+          <div class="channel-sidebar" role="tablist" aria-orientation="vertical">
+            <div class="channel-category" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.5l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/>
+              </svg>
+              Desenvolvimento
+            </div>
+            <button class="channel-item active" role="tab" aria-selected="true" data-service="bots" aria-controls="service-bots">
+              bots-personalizados
+            </button>
+            <button class="channel-item" role="tab" aria-selected="false" data-service="automacao" aria-controls="service-automacao">
+              automacao
+            </button>
+            <button class="channel-item" role="tab" aria-selected="false" data-service="api" aria-controls="service-api">
+              integracoes-api
+            </button>
+
+            <div class="channel-category" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8"/>
+                <path d="M12 17v4"/>
+              </svg>
+              Infraestrutura
+            </div>
+            <button class="channel-item" role="tab" aria-selected="false" data-service="arquitetura" aria-controls="service-arquitetura">
+              arquitetura
+            </button>
+            <button class="channel-item" role="tab" aria-selected="false" data-service="seguranca" aria-controls="service-seguranca">
+              seguranca
+            </button>
+
+            <div class="channel-category" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              Comunidade
+            </div>
+            <button class="channel-item" role="tab" aria-selected="false" data-service="moderacao" aria-controls="service-moderacao">
+              moderacao
+            </button>
+            <button class="channel-item" role="tab" aria-selected="false" data-service="gestao" aria-controls="service-gestao">
+              gestao-comunidade
+            </button>
+
+            <div class="channel-category" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <path d="M12 17h.01"/>
+              </svg>
+              Consultoria
+            </div>
+            <button class="channel-item" role="tab" aria-selected="false" data-service="consultoria" aria-controls="service-consultoria">
+              diagnostico
+            </button>
+            <button class="channel-item" role="tab" aria-selected="false" data-service="suporte" aria-controls="service-suporte">
+              suporte-tecnico
+            </button>
+          </div>
+
+          <div class="channel-content">
+            <!-- Bots -->
+            <div class="channel-content-panel" id="service-bots" role="tabpanel" aria-label="Bots personalizados">
+              <div class="channel-content-header">
+                <span class="hash" aria-hidden="true">#</span>
+                <h3>bots-personalizados</h3>
+              </div>
+              <div class="channel-content-body">
+                <p>
+                  Desenvolvemos bots Discord sob medida para a necessidade do seu servidor.
+                  Diferente de bots genéricos, cada funcionalidade é planejada para se integrar
+                  perfeitamente ao fluxo da sua comunidade.
+                </p>
+                <p>
+                  De sistemas de moderação automatizada a ferramentas de engajamento,
+                  passando por integrações com APIs externas e dashboards administrativos.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag green">JavaScript</span>
+                  <span class="service-tag green">TypeScript</span>
+                  <span class="service-tag">discord.js</span>
+                  <span class="service-tag">Node.js</span>
+                  <span class="service-tag">APIs REST</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Automação -->
+            <div class="channel-content-panel" id="service-automacao" role="tabpanel" aria-label="Automação" hidden>
+              <div class="channel-content-header">
+                <span class="hash" aria-hidden="true">#</span>
+                <h3>automacao</h3>
+              </div>
+              <div class="channel-content-body">
+                <p>
+                  Automatize processos repetitivos e libere sua equipe para o que realmente importa.
+                  Boas-vindas, moderação, agendamento, notificações — tudo funcionando 24/7.
+                </p>
+                <p>
+                  Sistemas de ticket automatizado, atribuição de cargos por reação,
+                  logs de auditoria e muito mais.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag green">Node.js</span>
+                  <span class="service-tag">Workflows</span>
+                  <span class="service-tag">Webhooks</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- API -->
+            <div class="channel-content-panel" id="service-api" role="tabpanel" aria-label="Integrações e API" hidden>
+              <div class="channel-content-header">
+                <span class="hash" aria-hidden="true">#</span>
+                <h3>integracoes-api</h3>
+              </div>
+              <div class="channel-content-body">
+                <p>
+                  Conecte seu servidor Discord com ferramentas externas: CRMs, plataformas de pagamento,
+                  sistemas de suporte, dashboards e muito mais.
+                </p>
+                <p>
+                  Construímos pontes entre o Discord e o ecossistema da sua empresa ou comunidade.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag green">APIs</span>
+                  <span class="service-tag">Webhooks</span>
+                  <span class="service-tag">Node.js</span>
+                  <span class="service-tag">PHP</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Arquitetura -->
+            <div class="channel-content-panel" id="service-arquitetura" role="tabpanel" aria-label="Arquitetura" hidden>
+              <div class="channel-content-header">
+                <span class="hash" aria-hidden="true">#</span>
+                <h3>arquitetura</h3>
+              </div>
+              <div class="channel-content-body">
+                <p>
+                  Um servidor bem estruturado é a base de uma comunidade saudável.
+                  Planejamos a hierarquia de canais, cargos, permissões e categorias
+                  para maximizar organização e usabilidade.
+                </p>
+                <p>
+                  Desde servidores públicos com milhares de membros até espaços privados
+                  para equipes e empresas.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag">Estrutura de cargos</span>
+                  <span class="service-tag">Permissões</span>
+                  <span class="service-tag">Categorias</span>
+                  <span class="service-tag">Hierarquia</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Segurança -->
+            <div class="channel-content-panel" id="service-seguranca" role="tabpanel" aria-label="Segurança" hidden>
+              <div class="channel-content-header">
+                <span class="hash" aria-hidden="true">#</span>
+                <h3>seguranca</h3>
+              </div>
+              <div class="channel-content-body">
+                <p>
+                  Proteção contra raids, bots maliciosos, vazamento de informações e
+                  ataques de spam. Implementamos camadas de segurança que mantêm
+                  seu servidor seguro sem prejudicar a experiência dos membros.
+                </p>
+                <p>
+                  Configuração de automod, sistemas de verificação, logs de auditoria
+                  e políticas de segurança personalizadas.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag green">Automod</span>
+                  <span class="service-tag">Anti-raid</span>
+                  <span class="service-tag">Logs</span>
+                  <span class="service-tag">Verificação</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Moderação -->
+            <div class="channel-content-panel" id="service-moderacao" role="tabpanel" aria-label="Moderação" hidden>
+              <div class="channel-content-header">
+                <span class="hash" aria-hidden="true">#</span>
+                <h3>moderacao</h3>
+              </div>
+              <div class="channel-content-body">
+                <p>
+                  Equipes de moderação treinadas e processos claros para manter
+                  seu servidor organizado e seguro. Não se trata apenas de punir —
+                  trata-se de criar uma cultura.
+                </p>
+                <p>
+                  Recrutamento, treinamento, protocolos de ação e sistemas de suporte
+                  para moderadores.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag">Equipe dedicada</span>
+                  <span class="service-tag">Protocolos</span>
+                  <span class="service-tag">Treinamento</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gestão -->
+            <div class="channel-content-panel" id="service-gestao" role="tabpanel" aria-label="Gestão de comunidade" hidden>
+              <div class="channel-content-header">
+                <span class="hash" aria-hidden="true">#</span>
+                <h3>gestao-comunidade</h3>
+              </div>
+              <div class="channel-content-body">
+                <p>
+                  Gerenciamento completo da sua comunidade: engajamento, eventos,
+                  comunicação e crescimento sustentável. Acompanhamos métricas
+                  e ajustamos estratégias continuamente.
+                </p>
+                <p>
+                  Curadoria de conteúdo, organização de eventos, sistemas de
+                  feedback e relatórios periódicos.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag">Engajamento</span>
+                  <span class="service-tag">Eventos</span>
+                  <span class="service-tag">Métricas</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Consultoria -->
+            <div class="channel-content-panel" id="service-consultoria" role="tabpanel" aria-label="Consultoria" hidden>
+              <div class="channel-content-header">
+                <span class="hash" aria-hidden="true">#</span>
+                <h3>diagnostico</h3>
+              </div>
+              <div class="channel-content-body">
+                <p>
+                  Análise completa do seu servidor: estrutura, permissões, bots,
+                  fluxos de moderação e engajamento. Entregamos um relatório
+                  detalhado com recomendações priorizadas.
+                </p>
+                <p>
+                  Ideal para servidores que já existem mas precisam de
+                  otimização ou reestruturação.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag green">Auditoria</span>
+                  <span class="service-tag">Relatório</span>
+                  <span class="service-tag">Recomendações</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Suporte -->
+            <div class="channel-content-panel" id="service-suporte" role="tabpanel" aria-label="Suporte técnico" hidden>
+              <div class="channel-content-header">
+                <span class="hash" aria-hidden="true">#</span>
+                <h3>suporte-tecnico</h3>
+              </div>
+              <div class="channel-content-body">
+                <p>
+                  Suporte técnico especializado para seu servidor Discord.
+                  Resolução de problemas, manutenção de bots, ajustes de
+                  configuração e otimização contínua.
+                </p>
+                <p>
+                  Atendimento via ticket com tempo de resposta garantido.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag green">Suporte</span>
+                  <span class="service-tag">Manutenção</span>
+                  <span class="service-tag">Ticket</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROCESS — Audit log / timeline
+         ============================================================ -->
+    <section id="processo" aria-label="Processo">
+      <div class="shell-narrow">
+        <div class="process-header">
+          <div>
+            <div class="section-label">Processo</div>
+            <h2 class="section-title">Como transformamos seu servidor.</h2>
+            <p class="section-desc">
+              Cada projeto segue um fluxo estruturado. Transparência em cada etapa.
+            </p>
+          </div>
+        </div>
+
+        <div class="process-timeline" role="log" aria-label="Etapas do processo">
+          <div class="process-step">
+            <div class="process-step-time">
+              <span class="dot green" aria-hidden="true"></span>
+              ETAPA 01
+            </div>
+            <div class="process-step-body">
+              <div>
+                <h4>Diagnóstico</h4>
+                <p>Analisamos seu servidor, entendemos suas necessidades e mapeamos pontos críticos.</p>
+              </div>
+              <span class="process-step-badge green">2-3 dias</span>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-time">
+              <span class="dot" aria-hidden="true"></span>
+              ETAPA 02
+            </div>
+            <div class="process-step-body">
+              <div>
+                <h4>Proposta</h4>
+                <p>Apresentamos um plano detalhado com escopo, cronograma e entregáveis.</p>
+              </div>
+              <span class="process-step-badge">1-2 dias</span>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-time">
+              <span class="dot" aria-hidden="true"></span>
+              ETAPA 03
+            </div>
+            <div class="process-step-body">
+              <div>
+                <h4>Desenvolvimento</h4>
+                <p>Executamos o plano com entregas parciais e validação contínua.</p>
+              </div>
+              <span class="process-step-badge">Variável</span>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-time">
+              <span class="dot" aria-hidden="true"></span>
+              ETAPA 04
+            </div>
+            <div class="process-step-body">
+              <div>
+                <h4>Entrega & Suporte</h4>
+                <p>Implementação final, documentação e suporte pós-entrega.</p>
+              </div>
+              <span class="process-step-badge green">Contínuo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EXPERTISE — Role / permission matrix
+         ============================================================ -->
+    <section id="expertise" aria-label="Expertise">
+      <div class="shell">
+        <div class="section-label">Expertise</div>
+        <h2 class="section-title">Áreas de atuação.</h2>
+        <p class="section-desc">
+          Conhecimento profundo em cada camada de um servidor Discord profissional.
+        </p>
+
+        <div class="expertise-grid">
+          <article class="expertise-card">
+            <span class="expertise-role dev">Desenvolvimento</span>
+            <h4>Bots & Sistemas</h4>
+            <p>
+              Construímos bots modulares, performáticos e escaláveis.
+              Cada linha de código é pensada para o contexto do seu servidor.
+            </p>
+            <div class="expertise-perms">
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                discord.js
+              </span>
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Node.js
+              </span>
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                TypeScript
+              </span>
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                REST APIs
+              </span>
+            </div>
+          </article>
+
+          <article class="expertise-card">
+            <span class="expertise-role infra">Infraestrutura</span>
+            <h4>Arquitetura & Segurança</h4>
+            <p>
+              Estrutura de servidores que escala. Cargos, permissões, categorias
+              e segurança — tudo organizado com critério técnico.
+            </p>
+            <div class="expertise-perms">
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Permissões
+              </span>
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Automod
+              </span>
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Anti-raid
+              </span>
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Logs
+              </span>
+            </div>
+          </article>
+
+          <article class="expertise-card">
+            <span class="expertise-role community">Comunidade</span>
+            <h4>Gestão & Moderação</h4>
+            <p>
+              Equipes treinadas, processos claros e ferramentas que mantêm
+              sua comunidade saudável e engajada.
+            </p>
+            <div class="expertise-perms">
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Moderação
+              </span>
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Engajamento
+              </span>
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Eventos
+              </span>
+            </div>
+          </article>
+
+          <article class="expertise-card">
+            <span class="expertise-role security">Segurança</span>
+            <h4>Proteção & Compliance</h4>
+            <p>
+              Camadas de proteção contra ameaças, políticas de segurança
+              e conformidade com as diretrizes do Discord.
+            </p>
+            <div class="expertise-perms">
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Verificação
+              </span>
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Anti-spam
+              </span>
+              <span class="expertise-perm allowed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Auditoria
+              </span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT — Ticket interface
+         ============================================================ -->
+    <section id="contato" aria-label="Contato">
+      <div class="shell contact-layout">
+        <div class="ticket-panel" role="article" aria-label="Abrir ticket">
+          <div class="ticket-header">
+            <div class="ticket-header-left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 8h10l1 9-4-2-2 2-2-2-4 2 1-9Z"/>
+                <path d="M9 12h.01"/>
+                <path d="M15 12h.01"/>
+              </svg>
+              <h3>Novo Ticket</h3>
+            </div>
+            <span class="ticket-badge">Aberto</span>
+          </div>
+          <div class="ticket-body">
+            <p>
+              Quer transformar seu servidor Discord? Abra um ticket e converse
+              diretamente com nossa equipe.
+            </p>
+            <p>
+              Respondemos em até <strong>24 horas</strong> com um diagnóstico
+              inicial gratuito.
+            </p>
+            <div class="ticket-actions">
+              <a class="btn btn-primary" href="#" target="_blank" rel="noreferrer" aria-label="Abrir ticket no Discord">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 8h10l1 9-4-2-2 2-2-2-4 2 1-9Z"/>
+                  <path d="M9 12h.01"/>
+                  <path d="M15 12h.01"/>
+                </svg>
+                Abrir Ticket no Discord
+              </a>
+              <a class="btn" href="mailto:contato@crocodilesstore.com" aria-label="Enviar email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+                Enviar Email
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="ticket-info" aria-label="Informações de contato">
+          <a class="ticket-info-item" href="#" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 8h10l1 9-4-2-2 2-2-2-4 2 1-9Z"/>
+              <path d="M9 12h.01"/>
+              <path d="M15 12h.01"/>
+            </svg>
+            <span class="green">Discord</span>
+            <span style="margin-left:auto;color:var(--text-muted);font-size:12px;">crocodiles128</span>
+          </a>
+          <a class="ticket-info-item" href="mailto:contato@crocodilesstore.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            Email
+            <span style="margin-left:auto;color:var(--text-muted);font-size:12px;">contato@</span>
+          </a>
+          <a class="ticket-info-item" href="#" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            GitHub
+            <span style="margin-left:auto;color:var(--text-muted);font-size:12px;">crocodiles128</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer role="contentinfo">
+    <div class="shell footer-inner">
+      <span>&copy; 2026 Crocodiles Store. Todos os direitos reservados.</span>
+      <div class="footer-links">
+        <a href="#servicos">Serviços</a>
+        <a href="#processo">Processo</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT — Minimal, intentional
+       ============================================================ -->
+  <script>
+    (function() {
+      'use strict';
+
+      // --- Channel tabs ---
+      const tabs = document.querySelectorAll('[role="tab"]');
+      const panels = document.querySelectorAll('.channel-content-panel');
+
+      function activateTab(tab) {
+        if (!tab || tab.getAttribute('aria-selected') === 'true') return;
+
+        tabs.forEach(t => {
+          t.setAttribute('aria-selected', 'false');
+          t.classList.remove('active');
+        });
+
+        tab.setAttribute('aria-selected', 'true');
+        tab.classList.add('active');
+
+        const targetId = tab.getAttribute('aria-controls');
+        panels.forEach(p => {
+          p.hidden = p.id !== targetId;
+        });
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          activateTab(this);
+        });
+        tab.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activateTab(this);
+          }
+        });
+      });
+
+      // --- Scroll reveal ---
+      const revealElements = document.querySelectorAll('.section-title, .section-desc, .section-label, .diagnostic-panel, .services-layout, .process-timeline, .expertise-grid, .ticket-panel, .ticket-info');
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.08,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => {
+          el.classList.add('reveal');
+          observer.observe(el);
+        });
+      } else {
+        revealElements.forEach(el => el.classList.add('visible'));
+      }
+
+      // --- Smooth nav scroll ---
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            const offset = 64;
+            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        });
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
