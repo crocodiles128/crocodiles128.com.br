@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-language="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07090f">
+<meta name="description" content="Lucas Rocha — Currículo para recrutadores. Versões tecnologia e aviação em PDF.">
+<meta name="color-scheme" content="dark">
+<title>Currículo | Lucas Rocha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#07090f;--surface:#0e121f;--surface-2:#141a2a;--border:rgba(255,255,255,.08);--border-hover:rgba(255,255,255,.16);--text:#f6f7fb;--text-secondary:#a8b0c3;--text-tertiary:#6b7490;--accent:#74d1ff;--accent-dim:rgba(116,209,255,.12);--accent-warm:#f3c96b;--radius-sm:4px;--radius:8px;--radius-lg:12px;--max-width:1280px;--nav-height:64px;--transition:200ms cubic-bezier(.16,1,.3,1);--font:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif}
+html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-width:320px;min-height:100svh;display:flex;flex-direction:column}
+::selection{background:rgba(116,209,255,.25);color:var(--text)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-sm)}
+h1{font-size:clamp(36px,6vw,60px);font-weight:700;line-height:1;letter-spacing:-.03em}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;margin-bottom:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eyebrow::before{content:'';width:32px;height:1px;background:currentColor;opacity:.6}
+.shell{width:min(var(--max-width),calc(100% - 48px));margin:0 auto}
+@media(max-width:640px){.shell{width:min(var(--max-width),calc(100% - 28px))}}
+.topbar{position:fixed;inset:0 0 auto;z-index:100;height:var(--nav-height);border-bottom:1px solid var(--border);background:rgba(7,9,15,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:var(--nav-height);gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;color:var(--text);text-decoration:none}
+.brand-mark{display:grid;place-items:center;width:30px;height:30px;border:1px solid rgba(116,209,255,.3);border-radius:var(--radius-sm);background:var(--accent-dim);color:var(--accent);font-size:13px;font-weight:800}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links a{padding:8px 14px;border-radius:var(--radius-sm);font-size:14px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:background var(--transition),color var(--transition)}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.nav-links a.is-active{color:var(--accent);background:var(--accent-dim)}
+.nav-lang{display:flex;align-items:center;gap:4px;margin-left:12px;padding-left:12px;border-left:1px solid var(--border)}
+.nav-lang button{background:none;border:none;padding:6px 10px;border-radius:var(--radius-sm);font-family:var(--font);font-size:13px;font-weight:600;color:var(--text-tertiary);cursor:pointer}
+.nav-lang button[aria-pressed="true"]{color:var(--accent);background:var(--accent-dim)}
+.nav-toggle{display:none;background:none;border:none;width:36px;height:36px;border-radius:var(--radius-sm);cursor:pointer;color:var(--text);padding:6px}
+.nav-toggle span{display:block;width:20px;height:2px;margin:0 auto 4.5px;background:currentColor;border-radius:1px}
+.nav-toggle span:last-child{margin-bottom:0}
+@media(max-width:820px){.nav-links{display:none}.nav-toggle{display:block}.nav-links.is-open{display:flex;flex-direction:column;position:absolute;top:var(--nav-height);left:0;right:0;padding:8px 24px 20px;background:rgba(7,9,15,.96);border-bottom:1px solid var(--border)}.nav-links.is-open a{width:100%;padding:12px 14px}.nav-lang{margin-left:0;padding-left:0;border-left:none}}
+main{flex:1}
+.cv-hero{padding:calc(var(--nav-height) + 72px) 0 24px;position:relative;overflow:hidden}
+.cv-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(116,209,255,.06),transparent 50%),radial-gradient(circle at 80% 70%,rgba(243,201,107,.04),transparent 40%);pointer-events:none}
+.cv-hero .shell{position:relative;z-index:1}
+.cv-hero p.lead{margin-top:16px;max-width:620px;font-size:17px;color:var(--text-secondary)}
+.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:32px 0 24px}
+.cv-card{display:flex;gap:20px;align-items:flex-start;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface);padding:32px 28px;position:relative;overflow:hidden;transition:border-color var(--transition),transform var(--transition)}
+.cv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(116,209,255,.3),transparent)}
+.cv-card:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.cv-icon{flex-shrink:0;display:grid;place-items:center;width:56px;height:56px;border-radius:var(--radius);border:1px solid rgba(116,209,255,.3);background:var(--accent-dim);color:var(--accent);font-weight:800;font-size:15px}
+.cv-icon.warm{border-color:rgba(243,201,107,.3);background:rgba(243,201,107,.1);color:var(--accent-warm)}
+.cv-body{flex:1;min-width:0}
+.cv-tag{display:inline-block;margin-bottom:10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.cv-card:nth-child(2) .cv-tag{color:var(--accent-warm)}
+.cv-body h2{font-size:clamp(20px,2vw,24px);margin-bottom:8px}
+.cv-body p{font-size:15px;color:var(--text-secondary)}
+.cv-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.cv-meta span{font-size:13px;font-weight:500;color:var(--text-secondary);padding:6px 12px;border-radius:var(--radius-sm);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.cv-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid var(--border);border-radius:var(--radius);background:rgba(255,255,255,.04);color:var(--text);font-family:var(--font);font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;transition:background var(--transition),border-color var(--transition),transform var(--transition)}
+.btn:hover{border-color:var(--border-hover);background:rgba(255,255,255,.08);transform:translateY(-1px)}
+.btn-primary{border-color:rgba(116,209,255,.3);background:var(--accent-dim)}
+.btn-primary:hover{border-color:rgba(116,209,255,.5);background:rgba(116,209,255,.18)}
+.btn svg{width:18px;height:18px;stroke-width:2;flex-shrink:0}
+.cv-note{padding:0 0 88px;font-size:14px;color:var(--text-tertiary)}
+.cv-note a{color:var(--accent);text-decoration:none}
+footer{border-top:1px solid var(--border);padding:28px 0 36px}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:14px;color:var(--text-tertiary)}
+.footer-row a{color:var(--text-secondary);text-decoration:none}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 600ms cubic-bezier(.16,1,.3,1),transform 600ms cubic-bezier(.16,1,.3,1)}
+.reveal.is-visible{opacity:1;transform:none}
+@media(max-width:820px){.cv-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.cv-card{flex-direction:column;padding:28px 22px}.cv-actions .btn{flex:1 1 100%;justify-content:center}}
+@media(max-width:540px){.footer-row{flex-direction:column;text-align:center}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="topbar"><nav class="shell nav" aria-label="Navegação principal">
+<a class="brand" href="../index.html"><span class="brand-mark">L</span><span>Lucas Rocha</span></a>
+<button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links" type="button"><span></span><span></span><span></span></button>
+<ul class="nav-links" id="nav-links">
+<li><a href="../index.html#mission" data-i18n="nav.mission">Missão</a></li>
+<li><a href="../index.html#operations" data-i18n="nav.operations">Operações</a></li>
+<li><a href="../index.html#systems" data-i18n="nav.systems">Sistemas</a></li>
+<li><a href="../index.html#journey" data-i18n="nav.journey">Jornada</a></li>
+<li><a href="../index.html#aviation" data-i18n="nav.aviation">Aviação</a></li>
+<li><a href="../index.html#contact" data-i18n="nav.contact">Contato</a></li>
+<li><a href="cv.html" class="is-active" aria-current="page" data-i18n="nav.cv">Currículo</a></li>
+<li class="nav-lang"><button data-lang="pt" aria-pressed="true" type="button">PT</button><button data-lang="en" aria-pressed="false" type="button">EN</button></li>
+</ul>
+</nav></header>
+<main>
+<section class="cv-hero"><div class="shell">
+<p class="eyebrow" data-i18n="cv.eyebrow">Recrutadores</p>
+<h1 data-i18n="cv.title">Currículo</h1>
+<p class="lead" data-i18n="cv.desc">Baixe meu currículo no foco ideal para a vaga. Arquivos em PDF, sempre atualizados.</p>
+</div></section>
+<div class="shell"><div class="cv-grid">
+<article class="cv-card reveal"><div class="cv-icon">TEC</div><div class="cv-body">
+<span class="cv-tag">Tecnologia · PT-BR</span>
+<h2 data-i18n="cv.tech.title">Currículo — Tecnologia</h2>
+<p data-i18n="cv.tech.desc">Foco em software: experiência, stack, projetos e contato.</p>
+<div class="cv-meta"><span>PDF</span><span data-i18n="cv.tech.meta1">PT-BR</span><span data-i18n="cv.tech.meta2">Tecnologia</span></div>
+<div class="cv-actions">
+<a class="btn btn-primary" href="curriculo-tecnologia.pdf" download="Lucas-Rocha-CV-Tecnologia.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg><span data-i18n="cv.download">Baixar PDF</span></a>
+<a class="btn" href="curriculo-tecnologia.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 4h6v6"/><path d="M20 4 10 14"/><path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"/></svg><span data-i18n="cv.open">Abrir no navegador</span></a>
+</div></div></article>
+<article class="cv-card reveal"><div class="cv-icon warm">AVI</div><div class="cv-body">
+<span class="cv-tag">Aviação</span>
+<h2 data-i18n="cv.avi.title">Currículo — Aviação</h2>
+<p data-i18n="cv.avi.desc">Foco em aviação: formação, habilitações, experiência e contato.</p>
+<div class="cv-meta"><span>PDF</span><span>PT-BR</span><span data-i18n="cv.avi.meta2">Aviação</span></div>
+<div class="cv-actions">
+<a class="btn btn-primary" href="curriculo-aviacao.pdf" download="Lucas-Rocha-CV-Aviacao.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg><span data-i18n="cv.download">Baixar PDF</span></a>
+<a class="btn" href="curriculo-aviacao.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 4h6v6"/><path d="M20 4 10 14"/><path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"/></svg><span data-i18n="cv.open">Abrir no navegador</span></a>
+</div></div></article>
+</div>
+<p class="cv-note reveal">Prefere outro formato? Me chame pelo <a href="../index.html#contact">contato</a>.</p>
+</div></main>
+<footer><div class="shell footer-row"><span>&copy; 2026 Lucas Rocha. CROCODILES128.</span><span data-i18n="footer.tagline">Construído com engenharia.</span></div></footer>
+<script>
+(function(){'use strict';
+var t=document.querySelector('.nav-toggle'),n=document.getElementById('nav-links');
+if(t&&n){t.addEventListener('click',function(){var e=this.getAttribute('aria-expanded')==='true'?false:true;this.setAttribute('aria-expanded',e);n.classList.toggle('is-open')});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){t.setAttribute('aria-expanded','false');n.classList.remove('is-open')})})}
+var r=document.querySelectorAll('.reveal');
+if(r.length&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('is-visible')})},{threshold:.08});r.forEach(function(el){o.observe(el)})}else{r.forEach(function(el){el.classList.add('is-visible')})}
+var b=document.querySelectorAll('[data-lang]'),cur='pt';
+var T={pt:{'nav.mission':'Missão','nav.operations':'Operações','nav.systems':'Sistemas','nav.journey':'Jornada','nav.aviation':'Aviação','nav.contact':'Contato','nav.cv':'Currículo','cv.eyebrow':'Recrutadores','cv.title':'Currículo','cv.desc':'Baixe meu currículo no foco ideal para a vaga. Arquivos em PDF, sempre atualizados.','cv.tech.title':'Currículo — Tecnologia','cv.tech.desc':'Foco em software: experiência, stack, projetos e contato.','cv.tech.meta1':'PT-BR','cv.tech.meta2':'Tecnologia','cv.avi.title':'Currículo — Aviação','cv.avi.desc':'Foco em aviação: formação, habilitações, experiência e contato.','cv.avi.meta2':'Aviação','cv.download':'Baixar PDF','cv.open':'Abrir no navegador','footer.tagline':'Construído com engenharia.'},en:{'nav.mission':'Mission','nav.operations':'Operations','nav.systems':'Stack','nav.journey':'Journey','nav.aviation':'Aviation','nav.contact':'Contact','nav.cv':'Resume','cv.eyebrow':'Recruiters','cv.title':'Resume','cv.desc':'Download my resume with the right focus for the role. PDF files, always up to date.','cv.tech.title':'Resume — Technology','cv.tech.desc':'Software focus: experience, stack, projects and contact.','cv.tech.meta1':'PT-BR','cv.tech.meta2':'Technology','cv.avi.title':'Resume — Aviation','cv.avi.desc':'Aviation focus: training, ratings, experience and contact.','cv.avi.meta2':'Aviation','cv.download':'Download PDF','cv.open':'Open in browser','footer.tagline':'Built with engineering.'}};
+function apply(l){var s=T[l];if(!s)return;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(s[k])el.textContent=s[k]});cur=l;b.forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-lang')===l?'true':'false')})}
+b.forEach(function(x){x.addEventListener('click',function(){var l=this.getAttribute('data-lang');if(l!==cur)apply(l)})});
+})();
+</script>
+</body>
+</html>
