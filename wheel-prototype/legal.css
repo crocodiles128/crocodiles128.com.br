@@ -1,0 +1,49 @@
+.prototype-legal {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  gap: 14px 20px;
+  padding: 14px clamp(18px, 5vw, 72px);
+  border-bottom: 4px solid #c7f36b;
+  background: #30183f;
+  color: #fff;
+  font: 500 12px/1.5 Arial, sans-serif;
+}
+
+.prototype-legal .legal-badge {
+  padding: 9px 12px;
+  border-radius: 5px;
+  background: #c7f36b;
+  color: #24123e;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .045em;
+  white-space: nowrap;
+}
+
+.prototype-legal p {
+  max-width: 1450px;
+  margin: 0;
+}
+
+.wheel-page .wheel-layout {
+  min-height: 0;
+}
+
+@media (max-width: 800px) {
+  .prototype-legal {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 10px 14px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .prototype-legal .legal-badge {
+    justify-self: start;
+    padding: 6px 9px;
+    font-size: 10px;
+  }
+}

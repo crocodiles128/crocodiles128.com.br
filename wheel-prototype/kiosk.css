@@ -1,0 +1,148 @@
+.wheel-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: hidden;
+  background: #faf9fc;
+}
+
+.wheel-page .topbar,
+.wheel-page .footer,
+.wheel-page .event-note,
+.wheel-page .wheel-caption,
+.wheel-page .wheel-glow,
+.wheel-page .wheel-copy .eyebrow,
+.wheel-page .admin-link {
+  display: none;
+}
+
+.wheel-page .wheel-layout {
+  flex: 1 1 auto;
+  max-width: 1500px;
+  min-height: 0;
+  grid-template-columns: minmax(340px, .8fr) minmax(500px, 1.2fr);
+  gap: clamp(24px, 5vw, 80px);
+  padding: clamp(24px, 5vh, 64px) clamp(28px, 6vw, 90px);
+}
+
+.wheel-page .wheel-copy {
+  padding: 0;
+}
+
+.wheel-page .wheel-copy h1 {
+  font-size: clamp(58px, 6.3vw, 86px);
+  letter-spacing: -4px;
+  margin: 0 0 20px;
+}
+
+.wheel-page .wheel-copy > p {
+  font-size: clamp(17px, 1.5vw, 21px);
+  margin: 0 0 34px;
+}
+
+.wheel-page .wheel-cta {
+  gap: 18px;
+}
+
+.wheel-page .wheel-cta .button {
+  min-height: 64px;
+  padding: 0 28px;
+  border-radius: 12px;
+  font-size: 17px;
+  gap: 28px;
+}
+
+.wheel-page .wheel-cta .button span {
+  font-size: 22px;
+}
+
+.wheel-page .prize-count {
+  font-size: 14px;
+}
+
+.wheel-page .wheel-frame {
+  width: min(100%, 52vh, 650px);
+  padding: 19px;
+}
+
+.wheel-page .wheel-pointer {
+  border-left-width: 19px;
+  border-right-width: 19px;
+  border-top-width: 45px;
+}
+
+.wheel-page .wheel-hub {
+  width: 90px;
+  height: 90px;
+  font-size: 22px;
+}
+
+@media (orientation: portrait) {
+  .wheel-page .wheel-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(16px, 3vh, 34px);
+    padding: clamp(18px, 3vh, 38px) 24px;
+  }
+
+  .wheel-page .wheel-copy {
+    width: min(100%, 720px);
+    text-align: center;
+  }
+
+  .wheel-page .wheel-copy h1 {
+    font-size: clamp(40px, 7vw, 68px);
+    letter-spacing: -2.5px;
+    margin: 0 0 10px;
+  }
+
+  .wheel-page .wheel-copy > p {
+    font-size: clamp(15px, 2.1vw, 20px);
+    margin: 0 0 18px;
+  }
+
+  .wheel-page .wheel-cta {
+    justify-content: center;
+  }
+
+  .wheel-page .wheel-frame {
+    width: min(76vw, 47vh, 700px);
+    padding: 15px;
+  }
+}
+
+@media (max-width: 800px) and (orientation: landscape) {
+  .wheel-page .wheel-layout {
+    min-height: 100vh;
+    min-height: 100svh;
+    grid-template-columns: minmax(230px, .8fr) minmax(260px, 1.2fr);
+    gap: 18px;
+    padding: 18px 24px;
+  }
+
+  .wheel-page .wheel-copy h1 {
+    font-size: clamp(38px, 7vh, 58px);
+    letter-spacing: -2px;
+    margin: 0 0 12px;
+  }
+
+  .wheel-page .wheel-copy > p {
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+
+  .wheel-page .wheel-cta .button {
+    min-height: 54px;
+    padding: 0 17px;
+    font-size: 14px;
+  }
+
+  .wheel-page .wheel-frame {
+    width: min(100%, 50vh);
+    padding: 12px;
+  }
+}
